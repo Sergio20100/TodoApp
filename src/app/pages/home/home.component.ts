@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, computed, signal, effect, OnInit, inject, Injector } from '@angular/core';
 import { Task } from '../../models/task.model';
 import { ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
@@ -8,7 +8,7 @@ type FilterType = 'all'|'pending' | 'completed'
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

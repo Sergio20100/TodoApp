@@ -6,42 +6,102 @@
     <input class="new-todo" placeholder="Type name" autofocus type="text" [value]="person().name"
       (change)="changeName($event)" />
 
-    <hr>
-    <pre>
-        <code>
-          {{person() | json}}
-        </code>
-      </pre>
-    <hr>
-    <div [ngSwitch]="person().name">
-      <p *ngSwitchCase="'nicolas'"> hola soy nicolas </p>
-      <p *ngSwitchCase="'valentina'"> hola soy valentina </p>
-      <p *ngSwitchCase="'pedro'"> hola soy pedro </p>
-      <p *ngSwitchCase="'juan'"> hola soy juan </p>
-      <p *ngSwitchDefault> hola no soy nadie </p>
-    </div>
-    <hr>
-    <p>Color: {{colorCtrl.value}}</p>
-    <input type="color" [formControl]="colorCtrl" />
+      <hr>
+        <pre>
+          <code>
+            {{person() | json}}
+          </code>
+        </pre>
+        <hr>
+          <div>
+            @switch (person().name) {
+              @case ('nicolas') {
+                <p> hola soy nicolas </p>
+              }
+              @case ('valentina') {
+                <p> hola soy valentina </p>
+              }
+              @case ('pedro') {
+                <p> hola soy pedro </p>
+              }
+              @case ('juan') {
+                <p> hola soy juan </p>
+              }
+              @default {
+                <p> hola no soy nadie </p>
+              }
+            }
+          </div>
+          <hr>
+            <p>Color: {{colorCtrl.value}}</p>
+            <input type="color" [formControl]="colorCtrl" />
 
-    <p>SVG</p>
-    <svg>
-      <g>
-        <rect x="0" y="0" height="100" width="100" [attr.fill]="colorCtrl.value" 
-                                                   [attr.width]="widthCtrl.value"/>
-      </g>
-    </svg>
-    <hr>
-    <input type="text" [formControl]="widthCtrl">
-    <span class="box" [style.width.px]="widthCtrl.value"></span>
-    <hr>
-    <p>
-      <b>Clases dinamicas</b><br/>
-      <input type="text" [formControl]="classNameCtrl"> <br/>
-     <span class="message-error" [class.active]="classNameCtrl.invalid && classNameCtrl.touched">Nombre Invalido</span>
-    </p>
-    <p>
-      <input type="text" >
-    </p>
-  </div>
-</div>
+            <p>SVG</p>
+            <svg>
+              <g>
+                <rect x="0" y="0" height="100" width="100" [attr.fill]="colorCtrl.value"
+                  [attr.width]="widthCtrl.value"/>
+                </g>
+              </svg>
+              <hr>
+                <input type="text" [formControl]="widthCtrl">
+                <span class="box" [style.width.px]="widthCtrl.value"></span>
+                <hr>
+                  <p>
+                    <b>Clases dinamicas</b><br/>
+                    <input type="text" [formControl]="classNameCtrl"> <br/>
+                    <span class="message-error" [class.active]="classNameCtrl.invalid && classNameCtrl.touched">Nombre Invalido</span>
+                  </p>
+                  <p>
+                    @if(classNameCtrl.value==='nicolas'){
+                      <strong>{{classNameCtrl.value}}</strong>
+                      }@else{
+                      <i>No eres nicolas</i>
+                    }
+                  </p>
+                  <hr/>
+                  <h2>New Sintaxis For </h2>
+                  <p>Total: {{tasks().length}}</p>
+                  <h3>Old for</h3>
+                  <ul class="list-group">
+                    @for (task of tasks(); track task; let i = $index) {
+                      <li class="list-group-item list-group-item-primary">
+                        {{i}} . {{task}}
+                      </li>
+                    }
+                  </ul>
+                  <h3>New for</h3>
+                  <ul class="list-group">
+                    @for(task of tasks(); track task; let i = $index){
+                      <li class="list-group-item list-group-item-secondary list-group-item-action">{{i}} {{task}}</li>
+                      } @empty {
+                      <li class="list-group-item list-group-item-danger"><strong>La Lista esta vacia</strong></li>
+                    }
+                  </ul>
+                  <hr/>
+                  <h2>New Switch</h2>
+                  <!-- <div [ngSwitch]="person().name">
+                  <p *ngSwitchCase="'nicolas'"> hola soy nicolas </p>
+                  <p *ngSwitchCase="'valentina'"> hola soy valentina </p>
+                  <p *ngSwitchCase="'pedro'"> hola soy pedro </p>
+                  <p *ngSwitchCase="'juan'"> hola soy juan </p>
+                  <p *ngSwitchDefault> hola no soy nadie </p>
+                </div> -->
+                <div>
+                  @switch (classNameCtrl.value) {
+                    @case('nicolas'){
+                      <p > hola soy nicolas </p>
+                    }
+                    @case('juan'){
+                      <p > hola soy juan </p>
+                    }
+                    @case('pedro'){
+                      <p > hola soy pedro </p>
+                    }
+                    @default{
+                      <p > No soy nadie </p>
+                    }
+                  }
+                </div>
+              </div>
+            </div>

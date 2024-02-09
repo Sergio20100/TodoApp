@@ -43,3 +43,5 @@ testem.log
 Thumbs.db
 # Firebase deploy tools
 .firebaserc
+/.firebase
+firebase.json

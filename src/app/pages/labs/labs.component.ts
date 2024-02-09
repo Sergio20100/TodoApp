@@ -10,11 +10,11 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 })
 export class LabsComponent {
   welcome = 'Bienvenido a Todo-App';
-  tasks = [
+  tasks = signal([
     'Intalar Angular CLI',
     'Crear proyecto',
     'Crear componentes'
-  ]
+  ])
   person = signal({name:'juan',age:15})
   img = 'https://w3schools.com/howto/img_avatar.png';
 
